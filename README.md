@@ -101,7 +101,15 @@ it.skip("should not return 10", function () {
 
 ### 6、Mocha 测试 typescript 代码
 
-使用 `ts-node` 来做 typescript 代码的运行时，与 Mocha 结合使用的脚本如下：
+使用 `ts-node` 来做 typescript 代码的运行时;
+
+安装依赖：
+
+```bash
+npm install ts-node @types/chai @types/mocha --save-dev
+```
+
+与 Mocha 结合使用的脚本如下：
 
 ```bash
 mocha -r ts-node/register src/*.test.ts
@@ -217,4 +225,70 @@ describe('some tests', function () {
 
 ### 11、Jest 测试 typescript 代码
 
-<!-- TODO -->
+`jest` 测试 typescript 代码相对简单;
+
+安装依赖：
+
+```bash
+# babel 相关转换插件
+yarn add --dev @babel/preset-typescript 
+# typescript 类型提示
+yarn add --dev @types/jest
+```
+
+修改 `babel.config.js` 配置文件：
+
+```diff
+module.exports = {
+  presets: [
+    ['@babel/preset-env', {targets: {node: 'current'}}],
++   '@babel/preset-typescript',
+  ],
+};
+```
+
+详情参考 demo10;
+
+参考文档：
+
+[Jest Docs: using-typescript ](https://jestjs.io/docs/en/getting-started#using-typescript)
+
+
+## 其他
+
+### Jest 与 Mocha 对比
+
+个人一些见解：
+#### (1)、断言库
+
+`Mocha` 需要配合其他断言库使用，例如 `chai`；
+`Jest` 自带断言库；
+
+这方面 `Jest` 使用更简单；
+
+#### (2)、指定测试文件
+
+`Mocha` 需要指定单元测试文件；
+`Jest` 会自动找到项目目录下的测试文件；
+
+这方面 `Jest` 使用更简单；
+#### (3)、对异步的处理
+
+`Mocha` 使用 `done` 函数来通知测试结束；
+`Jest` 使用 `done` 函数、返回 `Promise`、使用 `async` 来通知测试结束；
+
+这方面 `Jest` 处理更多样；
+
+#### (4)、对 ES Module 的支持
+
+`Mocha` 原生支持 ES Module 导入；
+`Jest` 需要借助与 Babel 来转换代码；
+
+这方面 `Mocah` 使用更简单；
+
+#### (5)、对 typescript 的支持
+
+`Mocha` 借助 ts-node 来运行 typescript 代码；
+`Jest` 借助 babel 插件来转换 typescript 代码再运行；
+
+两者使用体验上差不多；

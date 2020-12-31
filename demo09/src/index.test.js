@@ -27,7 +27,6 @@ describe('一组测试用例', function () {
     expect(res).toBe(8);
   });
 
-
   test("should not return 6", function () {
     const res = sum(3, 2);
     expect(res).not.toBe(6);
