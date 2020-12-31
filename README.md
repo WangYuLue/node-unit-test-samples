@@ -106,7 +106,7 @@ it.skip("should not return 10", function () {
 安装依赖：
 
 ```bash
-npm install ts-node @types/chai @types/mocha --save-dev
+yarn add ts-node @types/chai @types/mocha -D
 ```
 
 与 Mocha 结合使用的脚本如下：
