@@ -1,0 +1,6 @@
+{
+  "name": "demo08",
+  "scripts": {
+    "test": "jest"
+  }
+}

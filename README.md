@@ -10,7 +10,7 @@
 
 参考 demo02；
 
-### 3、Mocha 结合 Chai 断言库请求断言
+### 3、Mocha 结合 Chai 断言库异步请求
 
 参考 demo03:
 
@@ -55,6 +55,10 @@ describe('some tests', function() {
 });
 ```
 
+参考阅读：
+
+[阮一峰：测试框架 Mocha 实例教程](http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html)
+
 ### 5、Mocha 测试用例管理
 
 大型项目有很多测试用例。有时，我们希望只运行其中的几个，这时可以用 `only` 方法。`describe` 块和 `it` 块都允许调用 `only` 方法，表示只运行某个测试套件或测试用例。
@@ -76,7 +80,7 @@ it("should not return 10", function () {
 
 上面代码中，只有带有 `only` 方法的测试用例会运行。
 
-此外，还有skip方法，表示跳过指定的测试套件或测试用例:
+此外，还有 `skip` 方法，表示跳过指定的测试套件或测试用例:
 
 ```js
 // 基础方法测试
@@ -91,7 +95,11 @@ it.skip("should not return 10", function () {
 });
 ```
 
-### 06、Mocha 测试 typescript 代码
+参考阅读：
+
+[阮一峰：测试框架 Mocha 实例教程](http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html)
+
+### 6、Mocha 测试 typescript 代码
 
 使用 `ts-node` 来做 typescript 代码的运行时，与 Mocha 结合使用的脚本如下：
 
@@ -111,4 +119,102 @@ mocha -r ts-node/register $(find src -type f -name '*.test.ts')
 
 [Testing TypeScript with Mocha and Chai](https://dev.to/daniel_werner/testing-typescript-with-mocha-and-chai-5cl8)
 
-[阮一峰：测试框架 Mocha 实例教程](http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html)
+### 7、Jest 基础调试
+
+参考 demo07，这里需要借助 `babel` 来进行 ESModule 形式的导入。
+
+```bash
+yarn add --dev babel-jest @babel/core @babel/preset-env
+```
+
+添加 `babel.config.js` 文件：
+
+```js
+module.exports = {
+  presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
+};
+```
+
+参考链接：
+
+[JEST Docs: using-babel](https://jestjs.io/docs/en/getting-started.html#using-babel)
+
+### 8、Jest 异步请求
+
+一共有 3 种方式，参考 demo08：
+
+第一种：如果是异步请求，可以使用 done 来结束：
+
+```js
+test("dealy 500ms return 3", function (done) {
+  const res = sum(1, 2);
+  var f = function () {
+    expect(res).toBe(3);
+    done(); // 通知Mocha测试结束
+  };
+  setTimeout(f, 500);
+});
+```
+
+第二种：如果是 promise，可以直接返回这个 promise：
+
+```js
+test('【Promise】should http status return 200', function () {
+  return getData('https://github.com').then(res => {
+    expect(res).toBe(200);
+  })
+});
+```
+
+第三种：也可以使用 await，看上去更优雅：
+
+```js
+test('【async】should http status return 200 (Promise)', async function () {
+  const res = await getData('https://github.com');
+  expect(res).toBe(200);
+});
+```
+
+参考链接：
+
+[JEST Docs: asynchronous](https://jestjs.io/docs/zh-Hans/asynchronous)
+
+### 9、Jest 测试用例钩子
+
+与 Mocha 的钩子函数类似，不过将 `before` 换成了 `beforeAll`，`after` 换成了 `afterAll`；
+
+参考 demo09：
+
+```js
+describe('some tests', function () {
+  beforeAll(function() {
+    // 在本区块的所有测试用例之前执行
+  });
+
+  afterAll(function() {
+    // 在本区块的所有测试用例之后执行
+  });
+
+  beforeEach(function() {
+    // 在本区块的每个测试用例之前执行
+  });
+
+  afterEach(function() {
+    // 在本区块的每个测试用例之后执行
+  });
+
+  // test cases
+})
+```
+
+### 10、Jset 测试用例管理
+
+和 Mocha 类似， Jest 有 `only` 、`skip` 方法来管理测试用例；
+
+`only` 表示只运行某个测试套件或测试用例；`skip` 表示跳过指定的测试套件或测试用例；
+
+详情参考 demo10;
+
+### 11、Jest 测试 typescript 代码
+
+<!-- TODO -->
