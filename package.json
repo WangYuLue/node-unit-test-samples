@@ -1,0 +1,17 @@
+{
+  "name": "node-unit-test-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "@types/node-fetch": "^2.5.7",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "ts-loader": "^8.0.13"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "demo03",
+  "type": "module",
+  "scripts": {
+    "test": "mocha src --recursive"
+  }
+}

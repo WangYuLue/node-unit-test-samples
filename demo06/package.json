@@ -1,0 +1,7 @@
+{
+  "name": "demo06",
+  "type": "module",
+  "scripts": {
+    "test": "mocha -r ts-node/register $(find src -type f -name '*.test.ts')"
+  }
+}
