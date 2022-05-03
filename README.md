@@ -215,7 +215,7 @@ describe('some tests', function () {
 })
 ```
 
-### 10、Jset 测试用例管理
+### 10、Jest 测试用例管理
 
 和 Mocha 类似， Jest 有 `only` 、`skip` 方法来管理测试用例；
 
@@ -251,14 +251,14 @@ module.exports = {
 
 参考文档：
 
-[Jest Docs: using-typescript ](https://jestjs.io/docs/en/getting-started#using-typescript)
-
+[Jest Docs: using-typescript](https://jestjs.io/docs/en/getting-started#using-typescript)
 
 ## 其他
 
 ### Jest 与 Mocha 对比
 
 个人一些见解：
+
 #### (1)、断言库
 
 `Mocha` 需要配合其他断言库使用，例如 `chai`；
@@ -272,6 +272,7 @@ module.exports = {
 `Jest` 会自动找到项目目录下的测试文件；
 
 这方面 `Jest` 使用更简单；
+
 #### (3)、对异步的处理
 
 `Mocha` 使用 `done` 函数来通知测试结束；
