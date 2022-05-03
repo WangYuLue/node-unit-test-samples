@@ -247,11 +247,15 @@ module.exports = {
 };
 ```
 
-详情参考 demo10;
+详情参考 demo11;
 
 参考文档：
 
 [Jest Docs: using-typescript](https://jestjs.io/docs/en/getting-started#using-typescript)
+
+### 12、Jest 测试 react 组件
+
+详情参考 demo12;
 
 ## 其他
 
